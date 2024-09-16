@@ -9,7 +9,7 @@ void initCircularBuffer(struct circularBuffer* bufferPtr, int* data, int maxLeng
   bufferPtr->head = 0;
   bufferPtr->tail = 0;
   bufferPtr->maxLength = maxLength;
-  bufferPtr->numData = 0 // empty size at beginning
+  bufferPtr->numData = 0; // empty size at beginning
 }
 
 int addElement(struct circularBuffer* bufferPtr, int value){
@@ -17,7 +17,7 @@ int addElement(struct circularBuffer* bufferPtr, int value){
       return INT_MIN;
   }  
   bufferPtr->data[bufferPtr->tail] = value;
-  bufferPtr->numData++
+  bufferPtr->numData++;
   bufferPtr->tail = (bufferPtr-> tail + 1) % bufferPtr->maxLength;
   return value;
 }
@@ -46,10 +46,10 @@ int contains(struct circularBuffer* bufferPtr, int value){
       if(bufferPtr->data[index] == value){
         valueFound = 1;
       } 
-    index->tail = (index + 1 ) % bufferPtr->maxLength;
+    index = (index + 1 ) % bufferPtr->maxLength;
   }
   if(valueFound == 1){
-    return value
+    return value;
   } else{
   return INT_MIN;
   }
@@ -79,23 +79,33 @@ int removeValue(struct circularBuffer* bufferPtr, int value){
 }
 
 void printBuffer(struct circularBuffer* bufferPtr){
-  int index = bufferPtr->tail
+  int index = bufferPtr->tail;
 
-  for(i = 0; i < bufferPtr->maxLength; i++){
-    printf("%d ", bufferPtr->data[index])
-    index = (index + 1) % bufferPtr -> maxLength
+  for(int i = 0; i < bufferPtr->maxLength; i++){
+    printf("%d ", bufferPtr->data[index]);
+    index = (index + 1) % bufferPtr -> maxLength;
   } printf("\n");
 
 }
 
 
-bool isEmpty(struct circularBuffer* bufferPtr, int numData ){
-  return(bufferPtr->numData == 0);
-}
+int isEmpty(struct circularBuffer* bufferPtr){
+  if(bufferPtr->numData == 0){
+      return 1;
+    } else{
+      return 0;
+  }
+  
+  }
 
-bool isFull(struct circularBuffer* bufferPtr, int numData){
-    return(bufferPtr-> numData == bufferPtr->maxLength);
-}
+int isFull(struct circularBuffer* bufferPtr){
+    if(bufferPtr-> numData == bufferPtr->maxLength)
+    {
+      return 1;
+    } else{
+      return 0;
+    }
+  }
 
 
 

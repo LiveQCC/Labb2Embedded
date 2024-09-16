@@ -71,12 +71,12 @@ void printBuffer(struct circularBuffer* bufferPtr);
 /*
 * Checks if the buffer is empty and returns a bool
 */
-bool isEmpty(struct circularBuffer* bufferPtr, int numData);
+int isEmpty(struct circularBuffer* bufferPtr);
 
 /*
 * Checks if the buffer is full and returns a bool
 */
-bool isFull(struct circularBuffer* bufferPtr, int numData);
+int isFull(struct circularBuffer* bufferPtr);
 
 #endif
 
